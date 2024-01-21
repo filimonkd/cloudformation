@@ -1,10 +1,12 @@
-Resources:
+AWSTemplateFormatVersion: "2010-09-09"
+
+resources:
   MyBucket:
     Type: "AWS::S3::Bucket"
     Properties:
+      BucketName: !Ref WebsiteBucketName
       WebsiteConfiguration:
         IndexDocument: index.html
-        ErrorDocument: error.html
       PublicAccessBlockConfiguration:
         BlockPublicAcls: false
         BlockPublicPolicy: false
@@ -27,3 +29,4 @@ Resources:
                 - - "arn:aws:s3:::"
                   - Ref: "MyBucket"
                   - "/*"
+

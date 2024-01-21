@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  WebsiteBucketName:
+    Type: String
+    Description: Name for the S3 bucket hosting the static website
+    Default: "filimon-bucket"
+
+Resources:
+  WebsiteBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: !Ref WebsiteBucketName
+      WebsiteConfiguration:
+        IndexDocument: "index.html"
+
+Outputs:
+  WebsiteBucketURL:
+    Description: URL of the S3 bucket hosting the static website
+    Value: !GetAtt WebsiteBucket.WebsiteURL
